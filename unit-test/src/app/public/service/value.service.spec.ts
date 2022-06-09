@@ -1,6 +1,6 @@
 import { ValueService } from './value.service';
 
-fdescribe('Pruebas de ValueService', () => {
+describe('Pruebas de ValueService', () => {
   let service: ValueService;
 
   beforeEach(() => {
