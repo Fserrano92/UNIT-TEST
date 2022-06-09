@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Comandos usados para en el curso 
+
+`ng test` Comando para correr las pruebas unitarias 
+
+`ng test --no-watch` Comando para correr las pruebas unitarias y no quede escuchando 
+
+`ng test --code-coverage` Genera el reporte de covertura 
+
+`npm i karma-mocha-reporter --save-dev --legacy-peer-deps` Comando utilizado para instalar el mocha reporter para una mejor visualizacion de las pruebas
