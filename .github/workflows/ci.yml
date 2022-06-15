@@ -13,4 +13,4 @@ jobs:
       - name: Clear and Install
         run: npm cache clear --force && npm ci --legacy-peer-deps
       - name: Run tests
-        run: npx ng test  --no-watch --code-coverage --browsers=ChromeCI
+        run: npm run test -- --no-watch --code-coverage --browsers=ChromeCI
