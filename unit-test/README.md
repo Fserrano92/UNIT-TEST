@@ -36,3 +36,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 `ng test --code-coverage` Genera el reporte de covertura 
 
 `npm i karma-mocha-reporter --save-dev --legacy-peer-deps` Comando utilizado para instalar el mocha reporter para una mejor visualizacion de las pruebas
+
+`npm i faker-js/faker --save-dev` Comando para instalar libreria que permite generar data fake aleatoria
