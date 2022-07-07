@@ -1,10 +1,10 @@
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ETypeIMC, IPerson, PersonBuilder } from '../../models/pesonal.model';
 import { PersonComponent } from './person.component';
 
-fdescribe('PersonComponent', () => {
+describe('PersonComponent', () => {
   let component: PersonComponent;
   let fixture: ComponentFixture<PersonComponent>;
 
@@ -84,7 +84,7 @@ fdescribe('PersonComponent', () => {
       .build();
 
     component.person = person;
-    const buttonChooseDe = fixture.debugElement.query(By.css('butto.btn-choose'));
+    const buttonChooseDe = fixture.debugElement.query(By.css('button.btn-choose'));
 
     let personSelected: IPerson | undefined;
 
@@ -111,5 +111,65 @@ fdescribe('PersonComponent', () => {
     const p = pDebug.query(By.css('p'));
     const pElement = p.nativeElement;
     expect(pElement?.textContent).toEqual('Soy un parrafo');
+  });
+});
+
+@Component({
+  template: '<app-person [person]="person" (onSelect)="onSelect($event)"></app-person>'
+})
+class HostingComponent {
+
+  person: IPerson = new PersonBuilder()
+    .name('Alexander')
+    .lastName('Martinez')
+    .age(30)
+    .heigth(1.8)
+    .weigth(75)
+    .build();
+
+  personSelected: IPerson | undefined;
+
+  onSelect(person: IPerson) {
+    this.personSelected = person;
+  }
+}
+describe('PersonComponent from hosting', () => {
+  let component: HostingComponent;
+  let fixture: ComponentFixture<HostingComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [
+        HostingComponent,
+        PersonComponent
+      ]
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(HostingComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('Prueba de input', () => {
+    const namePerson = component.person.name;
+    const h3El = fixture.debugElement.query(By.css('app-person h3')).nativeElement;
+
+    expect(h3El.textContent).toContain(namePerson);
+  });
+
+  it('Prueba de Output', () => {
+  
+    const buttonDe = fixture.debugElement.query(By.css('app-person .btn-choose'));
+
+    buttonDe.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    
+    expect(component.personSelected).toEqual(component.person);
   });
 });

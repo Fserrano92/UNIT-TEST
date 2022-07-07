@@ -1,3 +1,15 @@
 <section class="container">
-  <app-person [person]="person"></app-person>
+  <div *ngIf="selectedPerson">
+    <ul>
+      <li id="name">Name: {{ selectedPerson.name }}</li>
+      <li id="lastName">Last Name: {{ selectedPerson.lastName }}</li>
+    </ul>
+  </div>
+  <p> Number of person: ({{people.length}})</p>
+  <app-person
+    *ngFor="let person of people" 
+    [person]="person"
+    id="{{person.name}}"
+    (onSelect)="onSelect($event)">
+  </app-person>
 </section>
